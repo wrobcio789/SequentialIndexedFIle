@@ -7,6 +7,13 @@
 #include <string>
 #include "io/FileCreator.h"
 
+class _RecordByKeySorter {
+public:
+	bool operator()(const Record& a, const Record& b) {
+		return a.key < b.key;
+	}
+};
+
 IndexedSequentialFile::IndexedSequentialFile(std::string mainFilename, std::string indexFilename){
 	_createEmptySequentialFile(mainFilename, indexFilename);
 	mainFile = std::make_unique<BufferedFile>(mainFilename);
@@ -46,10 +53,13 @@ bool IndexedSequentialFile::add(const Record& record) {
 		return false; 
 	}
 
-	if (recordPageIndex < Config::get().blockingFactor - 1 && records[recordPageIndex + 1].type == RecordType::EMPTY) {
-		records[recordPageIndex + 1] = record;
-		mainFile.get()->writeMainPage();
-		return true;
+	for (int newPlaceToInsert = recordPageIndex + 1; newPlaceToInsert < Config::get().blockingFactor; newPlaceToInsert++) {
+		if (records[newPlaceToInsert].type == RecordType::EMPTY) {
+			records[newPlaceToInsert] = record;
+			std::sort(records, records + newPlaceToInsert + 1, _RecordByKeySorter());
+			mainFile.get()->writeMainPage();
+			return true;
+		}
 	}
 
 	if (candidate.next == 0) {
