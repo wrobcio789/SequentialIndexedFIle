@@ -6,6 +6,7 @@ public:
 	unsigned int blockingFactor = 4;
 	float overflowRatio = 0.2;
 	float pageUtilisationFactor = 0.5;
+	unsigned int initialPageCount = 3;
 
 	std::string indexFilename = "data.indseq.index";
 	std::string mainFilename = "data.indseq";

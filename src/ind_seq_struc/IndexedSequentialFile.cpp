@@ -66,8 +66,17 @@ bool IndexedSequentialFile::add(const Record& record) {
 		Record* currentRecord = mainFile.get()->readSingleFromOverflow(currentPosition);
 
 		if (currentRecord->key == key) {
-			result = false;
-			break;
+			if (currentRecord->type == RecordType::PRESENT) {
+				result = false;
+				break;
+			}
+			else {
+				*currentRecord = record;
+				currentRecord->type = RecordType::PRESENT;
+				mainFile.get()->writeOverflowRecord();
+				result = true;
+				break;
+			}
 		}
 
 		if (currentRecord->key > key) {
@@ -246,12 +255,17 @@ void IndexedSequentialFile::_createEmptySequentialFile(std::string mainFilename,
 
 	FileCreator fileCreator(config.indexFilename, config.mainFilename);
 
-	index.push_back(0);
-	fileCreator.writeIndex(index.data(), index.size());
+	const size_t increment = (MAXIMUM_KEY_VALUE - MINIMUM_KEY_VALUE) / config.initialPageCount;
+	for (int i = 0; i < config.initialPageCount; i++) {
+		const size_t pageStartKey = MINIMUM_KEY_VALUE + increment * i;
+		index.push_back(pageStartKey);
 
-	Record initialRecord(RecordType::DELETED, MINIMUM_KEY_VALUE);
-	fileCreator.appendRecord(&initialRecord);
-	fileCreator.flushPage();
+		Record initialRecord(RecordType::DELETED, pageStartKey);
+		fileCreator.appendRecord(&initialRecord);
+		fileCreator.flushPage();
+	}
+
+	fileCreator.writeIndex(index.data(), index.size());
 }
 
 Record* IndexedSequentialFile::_findInOverflowArea(RecordKeyType key, size_t position)
