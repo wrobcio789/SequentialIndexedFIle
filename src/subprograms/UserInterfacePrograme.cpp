@@ -5,6 +5,10 @@
 
 UserInterfaceProgram::UserInterfaceProgram() : _file(Config::get().mainFilename, Config::get().indexFilename) {}
 
+UserInterfaceProgram::~UserInterfaceProgram(){
+	_statistics();
+}
+
 int UserInterfaceProgram::run()
 {
 	std::string command;
@@ -25,6 +29,8 @@ int UserInterfaceProgram::run()
 			_reorganise();
 		else if (command == "statistics")
 			_statistics();
+		else if (command == "reset_statistics")
+			_resetStatistics();
 	} while (command != "quit");
 	return 0;
 }
@@ -104,4 +110,8 @@ void UserInterfaceProgram::_reorganise() {
 
 void UserInterfaceProgram::_statistics() {
 	Statistics::get().print(std::cout);
+}
+
+void UserInterfaceProgram::_resetStatistics(){
+	Statistics::get().reset();
 }

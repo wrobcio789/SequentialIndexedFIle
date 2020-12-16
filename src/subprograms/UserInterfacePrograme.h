@@ -16,9 +16,11 @@ private:
 	void _update();
 	void _reorganise();
 	void _statistics();
+	void _resetStatistics();
 
 public:
 	UserInterfaceProgram();
+	~UserInterfaceProgram();
 
 	int run();
 };

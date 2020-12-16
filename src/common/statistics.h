@@ -21,6 +21,11 @@ public:
 		_pagesWritten += count;
 	}
 
+	void reset() {
+		_pagesRead = 0;
+		_pagesWritten = 0;
+	}
+
 	void print(std::ostream& stream) const {
 		stream << "STATISTICS\n"
 			<< "Pages written: " << _pagesWritten << "\n"

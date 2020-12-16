@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\common\ArgsParser.h" />
+    <ClInclude Include="src\common\Configurator.h" />
     <ClInclude Include="src\common\statistics.h" />
     <ClInclude Include="src\ind_seq_struc\io\FileCreator.h" />
     <ClInclude Include="src\ind_seq_struc\IndexedSequentialFile.h" />
@@ -148,6 +150,8 @@
     <ClInclude Include="src\subprograms\UserInterfacePrograme.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\common\ArgsParser.cpp" />
+    <ClCompile Include="src\common\Configurator.cpp" />
     <ClCompile Include="src\ind_seq_struc\io\FileCreator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\ind_seq_struc\IndexedSequentialFile.cpp" />
