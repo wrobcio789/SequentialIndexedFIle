@@ -12,6 +12,8 @@ private:
 	void _insert();
 	void _find();
 	void _print();
+	void _delete();
+	void _update();
 
 public:
 	UserInterfaceProgram();

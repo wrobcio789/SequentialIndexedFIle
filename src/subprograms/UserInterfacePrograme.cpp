@@ -16,6 +16,10 @@ int UserInterfaceProgram::run()
 			_find();
 		else if (command == "print")
 			_print();
+		else if (command == "delete")
+			_delete();
+		else if (command == "update")
+			_update();
 	} while (command != "quit");
 	return 0;
 }
@@ -53,6 +57,36 @@ void UserInterfaceProgram::_find() {
 	else {
 		std::cout << "Record with key " << key << " not found" << std::endl;
 	}
+}
+
+void UserInterfaceProgram::_delete() {
+	RecordKeyType key;
+
+	std::cin >> key;
+	const bool status = _file.deleteRecord(key);
+	if (status)
+		std::cout << "Record deleted" << std::endl;
+	else
+		std::cout << "Record not found" << std::endl;
+}
+
+void UserInterfaceProgram::_update() {
+	Record record;
+	RecordKeyType key;
+
+	std::cin >> key;
+	std::cin >> record.key;
+	for (int i = 0; i < Record::ElementsCount; i++) {
+		std::cin >> record.elements[i];
+	}
+	record.next = 0;
+	record.type = RecordType::PRESENT;
+
+	bool status = _file.update(key, record);
+	if (status)
+		std::cout << "Record updated" << std::endl;
+	else
+		std::cout << "Record not found" << std::endl;
 }
 
 void UserInterfaceProgram::_print() {

@@ -20,7 +20,7 @@ private:
 	void _createEmptySequentialFile(std::string mainFilename, std::string indexFilename);
 	int _findRecordPositionOnPage(RecordKeyType key, Record* records);
 	size_t _findPageNumberForKey(RecordKeyType key);
-	std::unique_ptr<Record> _findInOverflowArea(RecordKeyType key, size_t startPosition);
+	Record* _findInOverflowArea(RecordKeyType key, size_t startPosition);
 
 public:
 	IndexedSequentialFile(std::string mainFilename, std::string indexFilename);
@@ -28,6 +28,8 @@ public:
 
 	std::unique_ptr<Record> find(RecordKeyType key);
 	bool add(const Record& record);
+	bool deleteRecord(RecordKeyType key);
+	bool update(RecordKeyType key, const Record& record);
 
 	void print(std::ostream& stream);
 };
