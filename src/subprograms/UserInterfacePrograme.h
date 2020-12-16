@@ -14,6 +14,7 @@ private:
 	void _print();
 	void _delete();
 	void _update();
+	void _reorganise();
 
 public:
 	UserInterfaceProgram();

@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <string>
+#include "io/FileCreator.h"
 
 IndexedSequentialFile::IndexedSequentialFile(std::string mainFilename, std::string indexFilename){
 	_createEmptySequentialFile(mainFilename, indexFilename);
@@ -59,11 +60,15 @@ bool IndexedSequentialFile::add(const Record& record) {
 	}
 
 	size_t currentPosition = candidate.next;
+
+	bool result = false;
 	while(true){
 		Record* currentRecord = mainFile.get()->readSingleFromOverflow(currentPosition);
 
-		if (currentRecord->key == key)
-			return false;
+		if (currentRecord->key == key) {
+			result = false;
+			break;
+		}
 
 		if (currentRecord->key > key) {
 			Record oldRecordCopy = *currentRecord;
@@ -71,20 +76,26 @@ bool IndexedSequentialFile::add(const Record& record) {
 			currentRecord->next = mainFile.get()->getNextOverflowPosition();
 			mainFile.get()->writeOverflowRecord();
 			mainFile.get()->appendRecordInOverflow(oldRecordCopy);
-			return true;
+			result = true;
+			break;
 		}
 
 		if (currentRecord->next == 0) {
 			currentRecord->next = mainFile.get()->getNextOverflowPosition();
 			mainFile.get()->writeOverflowRecord();
 			mainFile.get()->appendRecordInOverflow(record);
-			return true;
+			result = true;
+			break;
 		}
 
 		currentPosition = currentRecord->next;
 	}
 
-	//TODO: checkForReorganization;
+	if (mainFile.get()->isFull()) {
+		reorganise();
+	}
+
+	return result;
 }
 
 bool IndexedSequentialFile::deleteRecord(RecordKeyType key)
@@ -109,8 +120,6 @@ bool IndexedSequentialFile::deleteRecord(RecordKeyType key)
 	return false;
 }
 
-
-
 bool IndexedSequentialFile::update(RecordKeyType key, const Record& record){
 	assert((record.type == RecordType::PRESENT && record.next == 0));
 
@@ -121,28 +130,73 @@ bool IndexedSequentialFile::update(RecordKeyType key, const Record& record){
 	Record* candidate = &records[recordPageIndex];
 	bool wasFound = false;
 	if (candidate->key == key && candidate->type == RecordType::PRESENT) {
-		if (key == record.key)
+		if (key == record.key) {
 			*candidate = record;
-		else
+			mainFile.get()->writeMainPage();
+			return true;
+		}
+		else {
 			candidate->type = RecordType::DELETED;
+			mainFile.get()->writeMainPage();
+			return add(record);
+		}
 
-		mainFile.get()->writeMainPage();
-		return add(record);
 	}
 
 	Record* recordInOverflow = _findInOverflowArea(key, candidate->next);
 	if (recordInOverflow != nullptr) {
 
-		if (key == record.key)
+		if (key == record.key) {
 			*recordInOverflow = record;
-		else
-			recordInOverflow->type = RecordType::DELETED;
+			mainFile.get()->writeOverflowRecord();
+			return true;
 
-		mainFile.get()->writeOverflowRecord();
-		return add(record);
+		}
+		else {
+			recordInOverflow->type = RecordType::DELETED;
+			mainFile.get()->writeOverflowRecord();
+			return add(record);
+		}
+
 	}
 
 	return false;
+}
+
+void IndexedSequentialFile::reorganise(){
+	const Config& config = Config::get();
+	const size_t maxRecordsCountOnPage = config.blockingFactor * config.pageUtilisationFactor;
+	std::vector<RecordKeyType> newIndex = { MINIMUM_KEY_VALUE };
+
+	{
+		const Record initialValue(RecordType::DELETED, MINIMUM_KEY_VALUE);
+		FileCreator fileCreator(config.tempIndexFilename, config.tempMainFilename);
+		fileCreator.appendRecord(&initialValue);
+
+		Iterator iterator(*this);
+		while (const Record* record = iterator.next()) {
+			if (fileCreator.getRecordsCount() == 0) {
+				newIndex.push_back(record->key);
+			}
+
+			fileCreator.appendRecord(record);
+			if (fileCreator.getRecordsCount() >= maxRecordsCountOnPage)
+				fileCreator.flushPage();
+		}
+
+		if (fileCreator.getRecordsCount() > 0)
+			fileCreator.flushPage();
+	}
+
+	index = newIndex;
+	mainFile.reset();
+
+	std::remove(config.indexFilename.c_str());
+	std::remove(config.mainFilename.c_str());
+	std::rename(config.tempIndexFilename.c_str(), config.indexFilename.c_str());
+	std::rename(config.tempMainFilename.c_str(), config.mainFilename.c_str());
+
+	mainFile = std::make_unique<BufferedFile>(config.mainFilename);
 }
 
 void IndexedSequentialFile::print(std::ostream& stream){
@@ -186,32 +240,18 @@ void IndexedSequentialFile::print(std::ostream& stream){
 	}
 }
 
+
 void IndexedSequentialFile::_createEmptySequentialFile(std::string mainFilename, std::string indexFilename){
 	const Config& config = Config::get();
 
-	std::fstream mainStream(mainFilename, std::fstream::out | std::fstream::binary);
-	if (!mainStream.is_open()) {
-		std::cerr << "File " + mainFilename + " could not be opened" << std::endl;
-		exit(-1);
-	}
+	FileCreator fileCreator(config.indexFilename, config.mainFilename);
 
-	std::fstream indexStream(indexFilename, std::fstream::out | std::fstream::binary);
-	if (!indexStream.is_open()) {
-		std::cerr << "File " + indexFilename + " could not be opened" << std::endl;
-		exit(-1);
-	}
-
-	//At the beginning we have only 1 page
 	index.push_back(0);
-	indexStream.write(reinterpret_cast<char*>(index.data()), index.size() * sizeof(RecordKeyType));
+	fileCreator.writeIndex(index.data(), index.size());
 
-	Record* mainBuffer = new Record[config.blockingFactor];
-	mainBuffer[0] = Record(RecordType::DELETED, MINIMUM_KEY_VALUE);
-	mainStream.write(reinterpret_cast<char*>(mainBuffer), config.blockingFactor * sizeof(Record));
-
-	indexStream.close();
-	mainStream.close();
-	delete[] mainBuffer;
+	Record initialRecord(RecordType::DELETED, MINIMUM_KEY_VALUE);
+	fileCreator.appendRecord(&initialRecord);
+	fileCreator.flushPage();
 }
 
 Record* IndexedSequentialFile::_findInOverflowArea(RecordKeyType key, size_t position)
@@ -234,13 +274,11 @@ Record* IndexedSequentialFile::_findInOverflowArea(RecordKeyType key, size_t pos
 	return nullptr;
 }
 
-
-
 size_t IndexedSequentialFile::_findPageNumberForKey(RecordKeyType key) {
 	std::vector<RecordKeyType>::iterator foundPos = std::upper_bound(index.begin(), index.end(), key);
 	if (foundPos == index.end())
 		return index.size() - 1;
-	return index.begin() - foundPos - 1;
+	return foundPos - index.begin() - 1;
 }
 
 int IndexedSequentialFile::_findRecordPositionOnPage(RecordKeyType key, Record* records) {
@@ -251,4 +289,50 @@ int IndexedSequentialFile::_findRecordPositionOnPage(RecordKeyType key, Record* 
 			return i;
 	}
 	return 0;
+}
+
+IndexedSequentialFile::Iterator::Iterator(IndexedSequentialFile& file) : _file(file){
+	index = 0;
+	pageIndex = 0;
+	overflowPosition = 0;
+}
+
+const Record* IndexedSequentialFile::Iterator::_nextOverflow()
+{
+	while (overflowPosition != 0) {
+		Record* current = _file.mainFile.get()->readSingleFromOverflow(overflowPosition);
+		overflowPosition = current->next;
+		if (current->type == RecordType::PRESENT)
+			return current;
+	}
+	return nullptr;
+}
+
+const Record* IndexedSequentialFile::Iterator::next(){
+	while (index < _file.index.size()) {
+
+		const Record* nextOverflow = _nextOverflow();
+		if (nextOverflow != nullptr)
+			return nextOverflow;
+
+		const Record* records = _file.mainFile.get()->readPageFromMain(index);
+		while (pageIndex < Config::get().blockingFactor) {
+			const Record* current = &records[pageIndex++];
+			if (current->type == RecordType::PRESENT) {
+				overflowPosition = current->next;
+				return current;
+			}
+			else if (current->type == RecordType::DELETED) {
+				overflowPosition = current->next;
+				const Record* nextOverflow = _nextOverflow();
+				if (nextOverflow != nullptr)
+					return nextOverflow;
+			}
+		}
+
+		index++;
+		pageIndex = 0;
+	}
+
+	return nullptr;
 }

@@ -8,7 +8,6 @@ BufferedFile::BufferedFile(const std::string & filename)
 {
 	if (!_stream.is_open()) {
 		std::cerr << "File " + filename + " could not be opened" << std::endl;
-		exit(-1);
 	}
 
 	const Config& config = Config::get();
@@ -16,8 +15,8 @@ BufferedFile::BufferedFile(const std::string & filename)
 	_pageSizeInBytes = config.blockingFactor * sizeof(Record);
 	const size_t fileSizeInPages = fileSizeInBytes / _pageSizeInBytes; 
 
-	_mainPagesCount = std::max(fileSizeInPages * config.mainToOverflowRatioNumerator / config.mainToOverflowRatioDenominator, 1u);
-	_overflowPagesCount = std::max(fileSizeInPages * (config.mainToOverflowRatioDenominator - config.mainToOverflowRatioNumerator) / config.mainToOverflowRatioDenominator, 1u);
+	_mainPagesCount = fileSizeInPages;
+	_overflowPagesCount = std::max<size_t>(fileSizeInPages * config.overflowRatio, 1u);
 	_nextOverflowPosition = fileSizeInBytes;
 
 	

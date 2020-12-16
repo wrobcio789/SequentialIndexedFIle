@@ -3,16 +3,26 @@
 #include "../model/Record.h"
 #include <vector>
 
-struct _RecordCandidate{
-	Record record;
-	size_t position;
-
-	_RecordCandidate(const Record& record, size_t position) : record(record), position(position) {}
-};
-
-class IndexedSequentialFile
-{
+class IndexedSequentialFile{
 private:
+
+	class Iterator {
+	private:
+		IndexedSequentialFile& _file;
+
+		size_t index;
+		size_t pageIndex;
+		size_t overflowPosition;
+
+		const Record* _nextOverflow();
+
+	public:
+		Iterator(IndexedSequentialFile& file);
+
+		const Record* next();
+
+	};
+
 	std::vector<RecordKeyType> index;
 	std::unique_ptr<BufferedFile> mainFile;
 
@@ -30,6 +40,7 @@ public:
 	bool add(const Record& record);
 	bool deleteRecord(RecordKeyType key);
 	bool update(RecordKeyType key, const Record& record);
+	void reorganise();
 
 	void print(std::ostream& stream);
 };

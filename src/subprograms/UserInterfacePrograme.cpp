@@ -20,6 +20,8 @@ int UserInterfaceProgram::run()
 			_delete();
 		else if (command == "update")
 			_update();
+		else if (command == "reorganise")
+			_reorganise();
 	} while (command != "quit");
 	return 0;
 }
@@ -91,4 +93,8 @@ void UserInterfaceProgram::_update() {
 
 void UserInterfaceProgram::_print() {
 	_file.print(std::cout);
+}
+
+void UserInterfaceProgram::_reorganise() {
+	_file.reorganise();
 }

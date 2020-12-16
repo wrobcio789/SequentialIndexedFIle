@@ -4,11 +4,14 @@ class Config
 {
 public:
 	unsigned int blockingFactor = 4;
-	unsigned int mainToOverflowRatioNumerator = 4;
-	unsigned int mainToOverflowRatioDenominator = 5;
+	float overflowRatio = 0.2;
+	float pageUtilisationFactor = 0.5;
 
 	std::string indexFilename = "data.indseq.index";
 	std::string mainFilename = "data.indseq";
+
+	std::string tempIndexFilename = "data.indseq.index.tmp";
+	std::string tempMainFilename = "data.indseq.tmp";
 
 	static Config& get() {
 		static Config _instance;

@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ind_seq_struc\io\FileCreator.h" />
     <ClInclude Include="src\ind_seq_struc\IndexedSequentialFile.h" />
     <ClInclude Include="src\ind_seq_struc\io\BufferedFile.h" />
     <ClInclude Include="src\config\config.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="src\subprograms\UserInterfacePrograme.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ind_seq_struc\io\FileCreator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\ind_seq_struc\IndexedSequentialFile.cpp" />
     <ClCompile Include="src\ind_seq_struc\io\BufferedFile.cpp" />

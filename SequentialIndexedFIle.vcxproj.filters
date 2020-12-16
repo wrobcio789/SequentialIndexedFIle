@@ -27,6 +27,9 @@
     <ClCompile Include="src\subprograms\UserInterfacePrograme.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\ind_seq_struc\io\FileCreator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ind_seq_struc\IndexedSequentialFile.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\subprograms\UserInterfacePrograme.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ind_seq_struc\io\FileCreator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
