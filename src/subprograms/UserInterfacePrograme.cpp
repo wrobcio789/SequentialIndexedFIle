@@ -9,6 +9,7 @@ int UserInterfaceProgram::run()
 	std::string command;
 	do {
 		std::cin >> command;
+
 		if (command == "insert")
 			_insert();
 		else if (command == "find")

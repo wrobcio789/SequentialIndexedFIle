@@ -18,6 +18,7 @@ BufferedFile::BufferedFile(const std::string & filename)
 
 	_mainPagesCount = std::max(fileSizeInPages * config.mainToOverflowRatioNumerator / config.mainToOverflowRatioDenominator, 1u);
 	_overflowPagesCount = std::max(fileSizeInPages * (config.mainToOverflowRatioDenominator - config.mainToOverflowRatioNumerator) / config.mainToOverflowRatioDenominator, 1u);
+	_nextOverflowPosition = fileSizeInBytes;
 
 	
 	assert((fileSizeInPages * _pageSizeInBytes == fileSizeInBytes));
@@ -32,27 +33,50 @@ BufferedFile::~BufferedFile() {
 Record* BufferedFile::readPageFromMain(size_t pageNumber) {
 	assert((pageNumber < _mainPagesCount));
 
-	const size_t streamPosition = pageNumber * _pageSizeInBytes; //TODO change buffering
+	const size_t streamPosition = pageNumber * _pageSizeInBytes;
 	_readData(streamPosition, _mainBuffer);
 	return reinterpret_cast<Record*>(_mainBuffer.data);
 }
 
 
-void BufferedFile::writePageToMain() {
+void BufferedFile::writeMainPage() {
 	_mainBuffer.shouldBeFlushed = true;
 }
 
-Record BufferedFile::readFromOverflowArea(size_t position){
-	const size_t pageNumber = (position) / Config::get().blockingFactor;
+Record* BufferedFile::readSingleFromOverflow(size_t position){
+	const size_t pageNumber = position / (Config::get().blockingFactor * sizeof(Record));
 	assert((pageNumber >= _mainPagesCount && pageNumber < _mainPagesCount + _overflowPagesCount));
 
-	const size_t streamPosition = pageNumber * Config::get().blockingFactor;
+	const size_t streamPosition = pageNumber * _pageSizeInBytes;
 	_readData(streamPosition, _overflowBuffer);
 
 	const size_t offset = position - streamPosition;
 	const size_t recordIndex = offset / sizeof(Record);
 
-	return reinterpret_cast<Record*>(_overflowBuffer.data)[recordIndex];
+	return reinterpret_cast<Record*>(_overflowBuffer.data) + recordIndex;
+}
+
+void BufferedFile::writeOverflowRecord(){
+	_overflowBuffer.shouldBeFlushed = true;
+}
+
+void BufferedFile::appendRecordInOverflow(const Record& record){
+	Record* newRecordPtr = readSingleFromOverflow(_nextOverflowPosition);
+	*newRecordPtr = record;
+	writeOverflowRecord();
+	_nextOverflowPosition += sizeof(Record);
+}
+
+size_t BufferedFile::getNextOverflowPosition(){
+	return _nextOverflowPosition;
+}
+
+size_t BufferedFile::getOverflowBeginning() {
+	return _mainPagesCount * _pageSizeInBytes;
+}
+
+bool BufferedFile::isFull(){
+	return _nextOverflowPosition / _pageSizeInBytes >= _mainPagesCount + _overflowPagesCount;
 }
 
 void BufferedFile::_readData(size_t position, Buffer& buffer) {

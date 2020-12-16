@@ -13,7 +13,7 @@ public:
 	Buffer() {
 		shouldBeFlushed = false;
 		associatedPosition = SIZE_MAX;
-		data = new char[Config::get().blockingFactor & sizeof(Record)];
+		data = new char[Config::get().blockingFactor * sizeof(Record)];
 	}
 
 	~Buffer() {
@@ -28,6 +28,7 @@ private:
 	std::size_t _mainPagesCount;
 	std::size_t _overflowPagesCount;
 	std::size_t _pageSizeInBytes;
+	std::size_t _nextOverflowPosition;
 
 	Buffer _mainBuffer;
 	Buffer _overflowBuffer;
@@ -41,7 +42,13 @@ public:
 	~BufferedFile();
 
 	Record* readPageFromMain(size_t pageNumber);
-	void writePageToMain();
+	void writeMainPage();
 
-	Record readFromOverflowArea(size_t position);
+	Record* readSingleFromOverflow(size_t position);
+	void writeOverflowRecord();
+	void appendRecordInOverflow(const Record& record);
+
+	bool isFull();
+	size_t getNextOverflowPosition();
+	size_t getOverflowBeginning();
 };
