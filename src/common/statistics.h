@@ -26,6 +26,10 @@ public:
 		_pagesWritten = 0;
 	}
 
+	size_t totalCount() {
+		return _pagesWritten + _pagesRead;
+	}
+
 	void print(std::ostream& stream) const {
 		stream << "STATISTICS\n"
 			<< "Pages written: " << _pagesWritten << "\n"

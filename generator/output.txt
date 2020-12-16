@@ -1,0 +1,902 @@
+Alpha = 1
+Beta = 0.2
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 13964
+Pages read: 24314
+Total disk operations: 38278
+STATISTICS
+Pages written: 2
+Pages read: 10335
+Total disk operations: 10337
+STATISTICS
+Pages written: 9954
+Pages read: 10342
+Total disk operations: 20296
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.9
+Beta = 0.2
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 13798
+Pages read: 23111
+Total disk operations: 36909
+STATISTICS
+Pages written: 2
+Pages read: 11323
+Total disk operations: 11325
+STATISTICS
+Pages written: 9961
+Pages read: 11332
+Total disk operations: 21293
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.8
+Beta = 0.2
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14272
+Pages read: 24704
+Total disk operations: 38976
+STATISTICS
+Pages written: 2
+Pages read: 10212
+Total disk operations: 10214
+STATISTICS
+Pages written: 9957
+Pages read: 10207
+Total disk operations: 20164
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.7
+Beta = 0.2
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14274
+Pages read: 24051
+Total disk operations: 38325
+STATISTICS
+Pages written: 2
+Pages read: 11201
+Total disk operations: 11203
+STATISTICS
+Pages written: 9966
+Pages read: 11197
+Total disk operations: 21163
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.6
+Beta = 0.2
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14647
+Pages read: 24944
+Total disk operations: 39591
+STATISTICS
+Pages written: 2
+Pages read: 10757
+Total disk operations: 10759
+STATISTICS
+Pages written: 9962
+Pages read: 10760
+Total disk operations: 20722
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.5
+Beta = 0.2
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 15323
+Pages read: 26507
+Total disk operations: 41830
+STATISTICS
+Pages written: 2
+Pages read: 10326
+Total disk operations: 10328
+STATISTICS
+Pages written: 9960
+Pages read: 10320
+Total disk operations: 20280
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.4
+Beta = 0.2
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 15001
+Pages read: 24320
+Total disk operations: 39321
+STATISTICS
+Pages written: 2
+Pages read: 13789
+Total disk operations: 13791
+STATISTICS
+Pages written: 9975
+Pages read: 13785
+Total disk operations: 23760
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.3
+Beta = 0.2
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 15566
+Pages read: 25033
+Total disk operations: 40599
+STATISTICS
+Pages written: 2
+Pages read: 15695
+Total disk operations: 15697
+STATISTICS
+Pages written: 9982
+Pages read: 15699
+Total disk operations: 25681
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.2
+Beta = 0.2
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 16195
+Pages read: 26162
+Total disk operations: 42357
+STATISTICS
+Pages written: 2
+Pages read: 16476
+Total disk operations: 16478
+STATISTICS
+Pages written: 9981
+Pages read: 16476
+Total disk operations: 26457
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.1
+Beta = 0.2
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 17269
+Pages read: 27358
+Total disk operations: 44627
+STATISTICS
+Pages written: 2
+Pages read: 16681
+Total disk operations: 16683
+STATISTICS
+Pages written: 9987
+Pages read: 16675
+Total disk operations: 26662
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.1
+Beta = 0.3
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 16945
+Pages read: 30589
+Total disk operations: 47534
+STATISTICS
+Pages written: 1
+Pages read: 26725
+Total disk operations: 26726
+STATISTICS
+Pages written: 9988
+Pages read: 26716
+Total disk operations: 36704
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.2
+Beta = 0.3
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 16365
+Pages read: 28261
+Total disk operations: 44626
+STATISTICS
+Pages written: 2
+Pages read: 19733
+Total disk operations: 19735
+STATISTICS
+Pages written: 9985
+Pages read: 19729
+Total disk operations: 29714
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.3
+Beta = 0.3
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 16263
+Pages read: 28924
+Total disk operations: 45187
+STATISTICS
+Pages written: 2
+Pages read: 12168
+Total disk operations: 12170
+STATISTICS
+Pages written: 9977
+Pages read: 12172
+Total disk operations: 22149
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.4
+Beta = 0.3
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 15221
+Pages read: 25574
+Total disk operations: 40795
+STATISTICS
+Pages written: 2
+Pages read: 16687
+Total disk operations: 16689
+STATISTICS
+Pages written: 9972
+Pages read: 16690
+Total disk operations: 26662
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.5
+Beta = 0.3
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14915
+Pages read: 25727
+Total disk operations: 40642
+STATISTICS
+Pages written: 2
+Pages read: 12623
+Total disk operations: 12625
+STATISTICS
+Pages written: 9971
+Pages read: 12622
+Total disk operations: 22593
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.6
+Beta = 0.3
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14719
+Pages read: 26258
+Total disk operations: 40977
+STATISTICS
+Pages written: 2
+Pages read: 10789
+Total disk operations: 10791
+STATISTICS
+Pages written: 9959
+Pages read: 10786
+Total disk operations: 20745
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.7
+Beta = 0.3
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14240
+Pages read: 24056
+Total disk operations: 38296
+STATISTICS
+Pages written: 2
+Pages read: 13575
+Total disk operations: 13577
+STATISTICS
+Pages written: 9970
+Pages read: 13578
+Total disk operations: 23548
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.8
+Beta = 0.3
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 13888
+Pages read: 23379
+Total disk operations: 37267
+STATISTICS
+Pages written: 2
+Pages read: 13343
+Total disk operations: 13345
+STATISTICS
+Pages written: 9963
+Pages read: 13351
+Total disk operations: 23314
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.9
+Beta = 0.3
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14185
+Pages read: 25839
+Total disk operations: 40024
+STATISTICS
+Pages written: 2
+Pages read: 10005
+Total disk operations: 10007
+STATISTICS
+Pages written: 9953
+Pages read: 10003
+Total disk operations: 19956
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 1
+Beta = 0.3
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 13602
+Pages read: 23313
+Total disk operations: 36915
+STATISTICS
+Pages written: 2
+Pages read: 12545
+Total disk operations: 12547
+STATISTICS
+Pages written: 9958
+Pages read: 12545
+Total disk operations: 22503
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 1
+Beta = 0.4
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 13790
+Pages read: 24198
+Total disk operations: 37988
+STATISTICS
+Pages written: 2
+Pages read: 12903
+Total disk operations: 12905
+STATISTICS
+Pages written: 9963
+Pages read: 12910
+Total disk operations: 22873
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.9
+Beta = 0.4
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 13974
+Pages read: 24166
+Total disk operations: 38140
+STATISTICS
+Pages written: 2
+Pages read: 13516
+Total disk operations: 13518
+STATISTICS
+Pages written: 9966
+Pages read: 13514
+Total disk operations: 23480
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.8
+Beta = 0.4
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14172
+Pages read: 24324
+Total disk operations: 38496
+STATISTICS
+Pages written: 2
+Pages read: 14208
+Total disk operations: 14210
+STATISTICS
+Pages written: 9967
+Pages read: 14208
+Total disk operations: 24175
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.7
+Beta = 0.4
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14441
+Pages read: 25383
+Total disk operations: 39824
+STATISTICS
+Pages written: 2
+Pages read: 13069
+Total disk operations: 13071
+STATISTICS
+Pages written: 9966
+Pages read: 13071
+Total disk operations: 23037
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.6
+Beta = 0.4
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14747
+Pages read: 26078
+Total disk operations: 40825
+STATISTICS
+Pages written: 2
+Pages read: 12976
+Total disk operations: 12978
+STATISTICS
+Pages written: 9972
+Pages read: 12980
+Total disk operations: 22952
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.5
+Beta = 0.4
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 15634
+Pages read: 29300
+Total disk operations: 44934
+STATISTICS
+Pages written: 2
+Pages read: 10910
+Total disk operations: 10912
+STATISTICS
+Pages written: 9963
+Pages read: 10909
+Total disk operations: 20872
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.4
+Beta = 0.4
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 15851
+Pages read: 29494
+Total disk operations: 45345
+STATISTICS
+Pages written: 2
+Pages read: 11754
+Total disk operations: 11756
+STATISTICS
+Pages written: 9971
+Pages read: 11757
+Total disk operations: 21728
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.3
+Beta = 0.4
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 16158
+Pages read: 28694
+Total disk operations: 44852
+STATISTICS
+Pages written: 2
+Pages read: 19834
+Total disk operations: 19836
+STATISTICS
+Pages written: 9986
+Pages read: 19838
+Total disk operations: 29824
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.2
+Beta = 0.4
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 16540
+Pages read: 29732
+Total disk operations: 46272
+STATISTICS
+Pages written: 1
+Pages read: 22977
+Total disk operations: 22978
+STATISTICS
+Pages written: 9984
+Pages read: 22975
+Total disk operations: 32959
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.1
+Beta = 0.4
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 18018
+Pages read: 34241
+Total disk operations: 52259
+STATISTICS
+Pages written: 2
+Pages read: 14663
+Total disk operations: 14665
+STATISTICS
+Pages written: 9980
+Pages read: 14663
+Total disk operations: 24643
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.1
+Beta = 0.5
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 22176
+Pages read: 53507
+Total disk operations: 75683
+STATISTICS
+Pages written: 2
+Pages read: 10193
+Total disk operations: 10195
+STATISTICS
+Pages written: 9965
+Pages read: 10188
+Total disk operations: 20153
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.2
+Beta = 0.5
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 17253
+Pages read: 35531
+Total disk operations: 52784
+STATISTICS
+Pages written: 2
+Pages read: 13063
+Total disk operations: 13065
+STATISTICS
+Pages written: 9979
+Pages read: 13066
+Total disk operations: 23045
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.3
+Beta = 0.5
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 16520
+Pages read: 30897
+Total disk operations: 47417
+STATISTICS
+Pages written: 1
+Pages read: 25861
+Total disk operations: 25862
+STATISTICS
+Pages written: 9987
+Pages read: 25854
+Total disk operations: 35841
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.4
+Beta = 0.5
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 16627
+Pages read: 33304
+Total disk operations: 49931
+STATISTICS
+Pages written: 2
+Pages read: 10500
+Total disk operations: 10502
+STATISTICS
+Pages written: 9968
+Pages read: 10495
+Total disk operations: 20463
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.5
+Beta = 0.5
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 15418
+Pages read: 27384
+Total disk operations: 42802
+STATISTICS
+Pages written: 2
+Pages read: 16774
+Total disk operations: 16776
+STATISTICS
+Pages written: 9976
+Pages read: 16767
+Total disk operations: 26743
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.6
+Beta = 0.5
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14980
+Pages read: 26562
+Total disk operations: 41542
+STATISTICS
+Pages written: 2
+Pages read: 15446
+Total disk operations: 15448
+STATISTICS
+Pages written: 9972
+Pages read: 15449
+Total disk operations: 25421
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.7
+Beta = 0.5
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14698
+Pages read: 26674
+Total disk operations: 41372
+STATISTICS
+Pages written: 2
+Pages read: 12991
+Total disk operations: 12993
+STATISTICS
+Pages written: 9966
+Pages read: 12994
+Total disk operations: 22960
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.8
+Beta = 0.5
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14428
+Pages read: 26229
+Total disk operations: 40657
+STATISTICS
+Pages written: 2
+Pages read: 12350
+Total disk operations: 12352
+STATISTICS
+Pages written: 9959
+Pages read: 12361
+Total disk operations: 22320
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.9
+Beta = 0.5
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14320
+Pages read: 26802
+Total disk operations: 41122
+STATISTICS
+Pages written: 2
+Pages read: 10981
+Total disk operations: 10983
+STATISTICS
+Pages written: 9962
+Pages read: 10993
+Total disk operations: 20955
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 1
+Beta = 0.5
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 14014
+Pages read: 25407
+Total disk operations: 39421
+STATISTICS
+Pages written: 2
+Pages read: 12613
+Total disk operations: 12615
+STATISTICS
+Pages written: 9962
+Pages read: 12628
+Total disk operations: 22590
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0
+Alpha = 0.1
+Beta = 0.5
+Bf = 25
+Pc = 10
+STATISTICS
+Pages written: 22176
+Pages read: 53507
+Total disk operations: 75683
+STATISTICS
+Pages written: 2
+Pages read: 10193
+Total disk operations: 10195
+STATISTICS
+Pages written: 9965
+Pages read: 10188
+Total disk operations: 20153
+
+
+STATISTICS
+Pages written: 0
+Pages read: 0
+Total disk operations: 0

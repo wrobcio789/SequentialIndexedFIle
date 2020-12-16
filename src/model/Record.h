@@ -6,9 +6,9 @@ enum class RecordType : short {
 	PRESENT
 };
 
-typedef unsigned short RecordKeyType;
+typedef unsigned int RecordKeyType;
 static const RecordKeyType MINIMUM_KEY_VALUE = 0;
-static const RecordKeyType MAXIMUM_KEY_VALUE = 1000;
+static const RecordKeyType MAXIMUM_KEY_VALUE = 50 * 1000 * 1000;
 
 
 struct Record {
@@ -17,7 +17,7 @@ struct Record {
 	int elements[ElementsCount];
 	size_t next;
 	RecordType type;
-	unsigned short key;
+	RecordKeyType key;
 	
 	Record(RecordType type = RecordType::EMPTY, unsigned short key = MINIMUM_KEY_VALUE) : elements() {
 		this->type = type;

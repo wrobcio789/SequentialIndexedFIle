@@ -9,6 +9,6 @@ void Configurator::configure(int argsCount, char* args[]){
 
 	config.blockingFactor = argsParser.getValue("blocking").asInt(4);
 	config.overflowRatio = argsParser.getValue("overflowRatio").asFloat(0.2);
-	config.initialPageCount = argsParser.getValue("pageCount").asInt(10);
+	config.initialPageCount = argsParser.getValue("pageCount").asInt(3);
 	config.pageUtilisationFactor = argsParser.getValue("utilFactor").asFloat(0.5);
 }

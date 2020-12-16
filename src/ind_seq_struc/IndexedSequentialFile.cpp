@@ -56,6 +56,10 @@ bool IndexedSequentialFile::add(const Record& record) {
 		candidate.next = mainFile.get()->getNextOverflowPosition();
 		mainFile.get()->writeMainPage();
 		mainFile.get()->appendRecordInOverflow(record);
+
+		if (mainFile.get()->isFull()) {
+			reorganise();
+		}
 		return true;
 	}
 
