@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include "../config/config.h"
+#include "../common/config.h"
 #include "../ind_seq_struc/IndexedSequentialFile.h"
 
 class UserInterfaceProgram {
@@ -15,6 +15,7 @@ private:
 	void _delete();
 	void _update();
 	void _reorganise();
+	void _statistics();
 
 public:
 	UserInterfaceProgram();

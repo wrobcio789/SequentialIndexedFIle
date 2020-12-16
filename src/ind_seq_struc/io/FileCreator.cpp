@@ -1,6 +1,7 @@
 #include "FileCreator.h"
-#include "../../config/config.h"
+#include "../../common/config.h"
 #include <cassert>
+#include "../../common/statistics.h"
 
 FileCreator::FileCreator(std::string indexFilename, std::string mainFilename) : indexFilename(indexFilename),
 	mainFilename(mainFilename), 
@@ -8,7 +9,7 @@ FileCreator::FileCreator(std::string indexFilename, std::string mainFilename) : 
 	indexStream(indexFilename, std::fstream::binary)
 {
 	buffer = new Record[Config::get().blockingFactor];
-	std::memset(buffer, 0, Config::get().blockingFactor *sizeof(Record));
+	std::memset(buffer, 0, Config::get().blockingFactor * sizeof(Record));
 	nextRecordIndex = 0;
 }
 
@@ -19,7 +20,13 @@ FileCreator::~FileCreator(){
 }
 
 void FileCreator::writeIndex(RecordKeyType* index, size_t size) {
-	indexStream.write(reinterpret_cast<char*>(index), size * sizeof(index));
+	const size_t writeSizeInBytes = size * sizeof(RecordKeyType);
+	indexStream.write(reinterpret_cast<char*>(index), writeSizeInBytes);
+
+	const Config& config = Config::get();
+	const size_t pageSizeInBytes = config.blockingFactor * sizeof(Record);
+	const size_t pagesWritten = (writeSizeInBytes + pageSizeInBytes - 1) / pageSizeInBytes;
+	Statistics::get().registerWrite(pagesWritten);
 }
 
 void FileCreator::appendRecord(const Record* record) {
@@ -32,6 +39,8 @@ void FileCreator::flushPage(){
 	mainStream.write(reinterpret_cast<char*>(buffer), Config::get().blockingFactor * sizeof(Record));
 	nextRecordIndex = 0;
 	std::memset(buffer, 0, Config::get().blockingFactor * sizeof(Record));
+
+	Statistics::get().registerWrite();
 }
 
 size_t FileCreator::getRecordsCount() {

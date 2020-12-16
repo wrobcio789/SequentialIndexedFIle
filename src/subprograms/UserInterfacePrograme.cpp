@@ -1,6 +1,7 @@
 #pragma once
 #include "UserInterfacePrograme.h"
 #include "../model/Record.h"
+#include "../common/statistics.h"
 
 UserInterfaceProgram::UserInterfaceProgram() : _file(Config::get().mainFilename, Config::get().indexFilename) {}
 
@@ -22,6 +23,8 @@ int UserInterfaceProgram::run()
 			_update();
 		else if (command == "reorganise")
 			_reorganise();
+		else if (command == "statistics")
+			_statistics();
 	} while (command != "quit");
 	return 0;
 }
@@ -97,4 +100,8 @@ void UserInterfaceProgram::_print() {
 
 void UserInterfaceProgram::_reorganise() {
 	_file.reorganise();
+}
+
+void UserInterfaceProgram::_statistics() {
+	Statistics::get().print(std::cout);
 }

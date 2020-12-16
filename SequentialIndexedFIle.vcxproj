@@ -139,10 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\common\statistics.h" />
     <ClInclude Include="src\ind_seq_struc\io\FileCreator.h" />
     <ClInclude Include="src\ind_seq_struc\IndexedSequentialFile.h" />
     <ClInclude Include="src\ind_seq_struc\io\BufferedFile.h" />
-    <ClInclude Include="src\config\config.h" />
+    <ClInclude Include="src\common\config.h" />
     <ClInclude Include="src\model\Record.h" />
     <ClInclude Include="src\subprograms\UserInterfacePrograme.h" />
   </ItemGroup>

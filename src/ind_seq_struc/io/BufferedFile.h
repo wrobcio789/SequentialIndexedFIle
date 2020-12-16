@@ -1,7 +1,7 @@
 #pragma once
 #include <fstream>
 #include "../../model/Record.h"
-#include "../../config/config.h"
+#include "../../common/config.h"
 #include <cassert>
 
 class Buffer {

@@ -1,6 +1,6 @@
 #pragma once
 #include "IndexedSequentialFile.h"
-#include "../config/config.h"
+#include "../common/config.h"
 #include <iostream>
 #include <algorithm>
 #include <iomanip>

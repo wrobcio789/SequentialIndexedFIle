@@ -1,7 +1,8 @@
 #pragma once
 #include "BufferedFile.h"
 #include <iostream>
-#include "../../config/config.h"
+#include "../../common/config.h"
+#include "../../common/statistics.h"
 
 BufferedFile::BufferedFile(const std::string & filename)
 	: _stream(filename, std::fstream::in | std::fstream::out | std::fstream::binary | std::fstream::ate)
@@ -88,6 +89,8 @@ void BufferedFile::_readData(size_t position, Buffer& buffer) {
 	_stream.seekg(position);
 	_stream.read(buffer.data, _pageSizeInBytes);
 	buffer.associatedPosition = position;
+
+	Statistics::get().registerRead();
 }
 
 void BufferedFile::_flushBuffer(Buffer& buffer) {
@@ -96,5 +99,7 @@ void BufferedFile::_flushBuffer(Buffer& buffer) {
 		_stream.seekp(buffer.associatedPosition);
 		_stream.write(buffer.data, _pageSizeInBytes);
 		buffer.shouldBeFlushed = false;
+
+		Statistics::get().registerWrite();
 	}
 }
